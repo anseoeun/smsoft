@@ -196,9 +196,9 @@ function scrollud(){
 
 }
 
-function flotingMenu(){
+function floatingMenu(){
   var top = $(window).scrollTop();
-  $('.floting-menu .top-btn').on('click', function(){
+  $('.floating-menu .top-btn').on('click', function(){
       $(window).scrollTop(0);
       if($('.main-container-wrap').length > 0 && $('body').hasClass('pcload')) {
         $('.nav-dot-container .nav-dot').eq(0).click();
@@ -209,12 +209,10 @@ function flotingMenu(){
   $(window).scroll(function(){
       top = $(window).scrollTop();
 
-      if(top> $(window).height()) {
-          $('.floting-menu').addClass('on');
+      if(top > $(window).height()) {
+          $('.floating-menu').addClass('on');
       }else{
-          setTimeout(function(){
-              $('.floting-menu').removeClass('on'); 
-          }, 300);
+        $('.floating-menu').removeClass('on'); 
       }
   });
 }
@@ -290,7 +288,7 @@ function mainWebScrollAni(){
 
       mouseScroll(event) {
         const activeSection = document.querySelector('.fullscreen-container .f-section.in-sight .content-scroll');
-    
+        (-this.viewHeight * this.currentPageNumber) >= 0 ? $('.floating-menu').removeClass('on') : $('.floating-menu').addClass('on')
         if (activeSection) {
             const scrollTop = activeSection.scrollTop;
             const scrollHeight = activeSection.scrollHeight;
@@ -316,6 +314,7 @@ function mainWebScrollAni(){
             } else {
                 this.scrollUp();
             }
+
         }
     }
 
@@ -331,9 +330,9 @@ function mainWebScrollAni(){
               if(this.currentPageNumber > 1){
                 // this.pages.style.top += document.querySelector('.footer').clientHeight
                 $('.header').addClass('type2');
-                $('.floting-menu').addClass('on');
+                $('.floating-menu').addClass('on');
               }else{
-                $('.floting-menu').removeClass('on');
+                $('.floating-menu').removeClass('on');
               }
           }
       }
@@ -852,7 +851,7 @@ window.addEventListener('load', function(){
   scrollud();
   introWorkDesc();
   timeline();
-  flotingMenu();
+  floatingMenu();
   pageMoveSet();
   tabMenuScroll();
   geographicSwiper();
